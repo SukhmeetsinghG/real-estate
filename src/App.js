@@ -50,7 +50,7 @@ export default function App() {
     applicationId: searchParams.get("applicationId") ?? "",
     applicationType: searchParams.get("applicationType") ?? "",
     actionType: searchParams.get("actionType") ?? "",
-    formDate: searchParams.get("formDate") ?? "",
+    fromDate: searchParams.get("fromDate") ?? "",
     toDate: searchParams.get("toDate") ?? "",
   });
 
@@ -99,7 +99,7 @@ export default function App() {
       params.applicationType != "" ||
       params.applicationId != "" ||
       params.actionType != "" ||
-      params.formDate != "" ||
+      params.fromDate != "" ||
       params.toDate != ""
     ) {
       if (params.logId != "") {
@@ -114,8 +114,8 @@ export default function App() {
       if (params.actionType != "") {
         arrFilters["actionType"] = params.actionType;
       }
-      if (params.formDate != "" && !isNaN(params.formDate)) {
-        arrFilters["formDate"] = new Date(params.formDate).getTime();
+      if (params.fromDate != "" && !isNaN(params.fromDate)) {
+        arrFilters["fromDate"] = new Date(params.fromDate).getTime();
       }
       if (params.toDate != "" && !isNaN(params.toDate)) {
         arrFilters["toDate"] = new Date(params.toDate).getTime();
@@ -126,7 +126,7 @@ export default function App() {
         let matchCount = 0;
         for (const [key, value] of Object.entries(arrFilters)) {
 
-          if (key != "formDate" && key != "toDate") {
+          if (key != "fromDate" && key != "toDate") {
             if (item[key]?.toString().indexOf(value) > -1) {
 
               matchCount++;
@@ -134,7 +134,7 @@ export default function App() {
           } else {
             //for dates keys filter
             let logDate = new Date(item["creationTimestamp"]).getTime();
-              if (key == "formDate") {
+              if (key == "fromDate") {
               if (logDate >= value) {
                 matchCount++;
               }
@@ -178,10 +178,10 @@ export default function App() {
     let urlStr = '?';
     for (let [key, value] of Object.entries(params)) {
       // console.log(key,typeof value);
-      // if(value.length > 0  (key == 'formDate' && !isNaN(value)) || (key == 'toDate' && !isNaN(value)))
-      if(value.length > 0  || (key  == 'formDate') || (key == 'toDate'))
+      // if(value.length > 0  (key == 'fromDate' && !isNaN(value)) || (key == 'toDate' && !isNaN(value)))
+      if(value.length > 0  || (key  == 'fromDate') || (key == 'toDate'))
       {
-        if((key == 'formDate' || key == 'toDate'))
+        if((key == 'fromDate' || key == 'toDate'))
         {
           if(value)
             value = new Date(value).toLocaleDateString();
@@ -269,8 +269,8 @@ export default function App() {
             <label>From Date</label>
             <DatePicker
               className="form-control"
-              selected={params.formDate}
-              onChange={(date) => setParams({ ...params, formDate: date })}
+              selected={params.fromDate}
+              onChange={(date) => setParams({ ...params, fromDate: date })}
               name="from_date"
             />
           </div>
