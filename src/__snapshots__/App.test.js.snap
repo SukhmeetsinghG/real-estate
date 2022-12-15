@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders logger system 1`] = `
+<div>
+  <div
+    class="py-5 paddingrl"
+  >
+    <h1>
+      Log List
+    </h1>
+    <form
+      action=""
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="form-group col-md-2"
+        >
+          <label>
+            Log Id
+          </label>
+          <input
+            class="form-control"
+            name="logId"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="form-group col-md-2"
+        >
+          <label>
+            Application Type
+          </label>
+          <select
+            class="form-control"
+            name="applicationType"
+          >
+            <option
+              value=""
+            >
+              Select Application Type
+            </option>
+          </select>
+        </div>
+        <div
+          class="form-group col-md-2"
+        >
+          <label>
+            Application Id
+          </label>
+          <input
+            class="form-control"
+            name="applicationId"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="form-group col-md-2"
+        >
+          <label>
+            Action Type
+          </label>
+          <select
+            class="form-control"
+            name="actionType"
+          >
+            <option
+              value=""
+            >
+              Select Action Type
+            </option>
+          </select>
+        </div>
+        <div
+          class="form-group col-md-2"
+        >
+          <label>
+            From Date
+          </label>
+          <div
+            class="react-datepicker-wrapper"
+          >
+            <div
+              class="react-datepicker__input-container"
+            >
+              <input
+                class="form-control"
+                name="from_date"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-md-1"
+        >
+          <label>
+            To Date
+          </label>
+          <div
+            class="react-datepicker-wrapper"
+          >
+            <div
+              class="react-datepicker__input-container"
+            >
+              <input
+                class="form-control"
+                name="to_date"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-md-1 pt-4"
+        >
+          <button
+            class="searchAction btn btn-primary"
+            type="button"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </form>
+    <div
+      class="card mt-2"
+    >
+      <div
+        class="sc-dmctIk WQNxq table table-striped table-bordered"
+      >
+        <div
+          class="sc-fLcnxK dApqnJ"
+        >
+          <div
+            class="sc-bcXHqe kVrXuC rdt_Table"
+            role="table"
+          >
+            <div
+              class="sc-iveFHk bzRnkJ"
+            >
+              <div
+                style="padding: 24px;"
+              >
+                There are no records to display
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
