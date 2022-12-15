@@ -208,8 +208,8 @@ export default function App() {
     <div className="py-5 paddingrl">
     <h1>Log List</h1>
       <form onSubmit={handleSearch} action="">
-        <div className="row">
-          <div className="form-group col-md-2">
+        <div className="d-flex">
+          <div className="form-group px-2">
             <label>Log Id</label>
             <input
               type="text"
@@ -219,7 +219,7 @@ export default function App() {
               className="form-control"
             />
           </div>
-          <div className="form-group col-md-2">
+          <div className="form-group px-2">
             <label>Application Type</label>
             <select
               name="applicationType"
@@ -237,7 +237,7 @@ export default function App() {
               })}
             </select>
           </div>
-          <div className="form-group col-md-2">
+          <div className="form-group px-2">
             <label>Application Id</label>
             <input
               type="text"
@@ -247,7 +247,7 @@ export default function App() {
               className="form-control"
             />
           </div>
-          <div className="form-group col-md-2">
+          <div className="form-group px-2">
             <label>Action Type</label>
             <select
               name="actionType"
@@ -265,7 +265,7 @@ export default function App() {
               })}
             </select>
           </div>
-          <div className="form-group col-md-2">
+          <div className="form-group px-2 ">
             <label>From Date</label>
             <DatePicker
               className="form-control"
@@ -274,7 +274,7 @@ export default function App() {
               name="from_date"
             />
           </div>
-          <div className="col-md-1">
+          <div className="px-2">
             <label>To Date</label>
             <DatePicker
               className="form-control"
@@ -283,14 +283,14 @@ export default function App() {
               name="to_date"
             />
           </div>
-          <div className="col-md-1 pt-4">
+          <div className="px-2 pt-4">
             <button type="button" onClick={NavigateTo} className="searchAction btn btn-primary">
               Search
             </button>
           </div>
         </div>
       </form>
-
+      <hr className="my-4"/>
       <div className="card mt-2">
         <DataTable
           className="table table-striped table-bordered"
