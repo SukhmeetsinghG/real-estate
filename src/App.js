@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams , useNavigate} from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -39,6 +39,7 @@ const columns = [
 ];
 
 export default function App() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [oData, setOData] = useState([]);
   const [applicationTypes, setApplicationTypes] = useState([]);
@@ -173,6 +174,36 @@ export default function App() {
     setParams(obj);
   };
 
+  const NavigateTo = async() =>{
+    let urlStr = '?';
+    for (let [key, value] of Object.entries(params)) {
+      // console.log(key,typeof value);
+      // if(value.length > 0  (key == 'formDate' && !isNaN(value)) || (key == 'toDate' && !isNaN(value)))
+      if(value.length > 0  || (key  == 'formDate') || (key == 'toDate'))
+      {
+        if((key == 'formDate' || key == 'toDate'))
+        {
+          if(value)
+            value = new Date(value).toLocaleDateString();
+        }
+
+        if(value.length > 0)
+        {
+          if(urlStr.length === 1 && urlStr === '?')
+          {
+            urlStr = urlStr +key+"="+value;
+          }else{
+            urlStr = urlStr + '&'+key+"="+value;
+          }  
+        }
+        // console.log(value)
+      }
+    }
+    navigate("/"+urlStr);
+    // window.location.reload(false);
+    handleSearch()
+  }
+
   return (
     <div className="py-5 paddingrl">
     <h1>Log List</h1>
@@ -194,11 +225,12 @@ export default function App() {
               name="applicationType"
               className="form-control"
               onChange={handleChange}
+              value={params.applicationType}
             >
               <option value="">Select Application Type</option>
               {applicationTypes.map((item) => {
                 return (
-                  <option key={item} value={item}>
+                  <option key={item} value={item} >
                     {item}
                   </option>
                 );
@@ -221,11 +253,12 @@ export default function App() {
               name="actionType"
               className="form-control"
               onChange={handleChange}
+              value={params.actionType}
             >
               <option value="">Select Action Type</option>
               {actionTypes.map((item) => {
                 return (
-                  <option key={item} value={item}>
+                  <option key={item} value={item} >
                     {item}
                   </option>
                 );
@@ -251,7 +284,7 @@ export default function App() {
             />
           </div>
           <div className="col-md-1 pt-4">
-            <button type="button" onClick={handleSearch} className="searchAction btn btn-primary">
+            <button type="button" onClick={NavigateTo} className="searchAction btn btn-primary">
               Search
             </button>
           </div>
