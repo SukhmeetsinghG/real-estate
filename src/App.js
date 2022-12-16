@@ -50,8 +50,8 @@ export default function App() {
     applicationId: searchParams.get("applicationId") ?? "",
     applicationType: searchParams.get("applicationType") ?? "",
     actionType: searchParams.get("actionType") ?? "",
-    fromDate: searchParams.get("fromDate") ?? "",
-    toDate: searchParams.get("toDate") ?? "",
+    fromDate: searchParams.get("fromDate") ? new Date(searchParams.get("fromDate")) : '',
+    toDate:  searchParams.get("toDate") ? new Date(searchParams.get("toDate")) : '',
   });
 
   useEffect(() => {
@@ -88,36 +88,35 @@ export default function App() {
           alert(error);
         }
       );
-    //console.log(data[0]);
   }
 
   //apply search filter
   const handleSearch = async () => {
     const arrFilters = [];
     if (
-      params.logId != "" ||
-      params.applicationType != "" ||
-      params.applicationId != "" ||
-      params.actionType != "" ||
-      params.fromDate != "" ||
-      params.toDate != ""
+      params.logId !== "" ||
+      params.applicationType !== "" ||
+      params.applicationId !== "" ||
+      params.actionType !== "" ||
+      params.fromDate !== "" ||
+      params.toDate !== ""
     ) {
-      if (params.logId != "") {
+      if (params.logId !== "") {
         arrFilters["logId"] = params.logId;
       }
-      if (params.applicationType != "") {
+      if (params.applicationType !== "") {
         arrFilters["applicationType"] = params.applicationType;
       }
-      if (params.applicationId != "") {
+      if (params.applicationId !== "") {
         arrFilters["applicationId"] = params.applicationId;
       }
-      if (params.actionType != "") {
+      if (params.actionType !== "") {
         arrFilters["actionType"] = params.actionType;
       }
-      if (params.fromDate != "" && !isNaN(params.fromDate)) {
+      if (params.fromDate !== "" && !isNaN(params.fromDate)) {
         arrFilters["fromDate"] = new Date(params.fromDate).getTime();
       }
-      if (params.toDate != "" && !isNaN(params.toDate)) {
+      if (params.toDate !== "" && !isNaN(params.toDate)) {
         arrFilters["toDate"] = new Date(params.toDate).getTime();
       }
 
@@ -126,7 +125,7 @@ export default function App() {
         let matchCount = 0;
         for (const [key, value] of Object.entries(arrFilters)) {
 
-          if (key != "fromDate" && key != "toDate") {
+          if (key !== "fromDate" && key !== "toDate") {
             if (item[key]?.toString().indexOf(value) > -1) {
 
               matchCount++;
@@ -134,19 +133,19 @@ export default function App() {
           } else {
             //for dates keys filter
             let logDate = new Date(item["creationTimestamp"]).getTime();
-              if (key == "fromDate") {
+              if (key === "fromDate") {
               if (logDate >= value) {
                 matchCount++;
               }
             }
-            if (key == "toDate") {
+            if (key === "toDate") {
               if (logDate <= value) {
                 matchCount++;
               }
             }
           }
         }
-        if (Object.keys(arrFilters).length == matchCount) {
+        if (Object.keys(arrFilters).length === matchCount) {
           return true;
         }
       });
@@ -177,14 +176,14 @@ export default function App() {
   const NavigateTo = async() =>{
     let urlStr = '?';
     for (let [key, value] of Object.entries(params)) {
-      // console.log(key,typeof value);
-      // if(value.length > 0  (key == 'fromDate' && !isNaN(value)) || (key == 'toDate' && !isNaN(value)))
-      if(value.length > 0  || (key  == 'fromDate') || (key == 'toDate'))
+      if(value.length > 0  || (key  === 'fromDate') || (key === 'toDate'))
       {
-        if((key == 'fromDate' || key == 'toDate'))
+        if((key === 'fromDate' || key === 'toDate'))
         {
-          if(value)
-            value = new Date(value).toLocaleDateString();
+          if(value){
+            const dt = new Date(value);
+            value = (dt.getMonth()+1)+"/"+dt.getDate()+"/"+dt.getFullYear();
+          }
         }
 
         if(value.length > 0)
@@ -269,7 +268,8 @@ export default function App() {
             <label>From Date</label>
             <DatePicker
               className="form-control"
-              selected={params.fromDate}
+              selected={typeof params.fromDate === 'object' ? new Date(params.fromDate) : ''}
+
               onChange={(date) => setParams({ ...params, fromDate: date })}
               name="from_date"
             />
@@ -278,7 +278,7 @@ export default function App() {
             <label>To Date</label>
             <DatePicker
               className="form-control"
-              selected={params.toDate}
+              selected={typeof params.toDate === 'object'  ? new Date(params.toDate) : ''}
               onChange={(date) => setParams({ ...params, toDate: date })}
               name="to_date"
             />
