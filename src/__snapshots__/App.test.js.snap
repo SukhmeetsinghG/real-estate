@@ -12,10 +12,10 @@ exports[`renders logger system 1`] = `
       action=""
     >
       <div
-        class="row"
+        class="d-flex"
       >
         <div
-          class="form-group col-md-2"
+          class="form-group px-2"
         >
           <label>
             Log Id
@@ -28,7 +28,7 @@ exports[`renders logger system 1`] = `
           />
         </div>
         <div
-          class="form-group col-md-2"
+          class="form-group px-2"
         >
           <label>
             Application Type
@@ -45,7 +45,7 @@ exports[`renders logger system 1`] = `
           </select>
         </div>
         <div
-          class="form-group col-md-2"
+          class="form-group px-2"
         >
           <label>
             Application Id
@@ -58,7 +58,7 @@ exports[`renders logger system 1`] = `
           />
         </div>
         <div
-          class="form-group col-md-2"
+          class="form-group px-2"
         >
           <label>
             Action Type
@@ -75,7 +75,7 @@ exports[`renders logger system 1`] = `
           </select>
         </div>
         <div
-          class="form-group col-md-2"
+          class="form-group px-2 "
         >
           <label>
             From Date
@@ -96,7 +96,7 @@ exports[`renders logger system 1`] = `
           </div>
         </div>
         <div
-          class="col-md-1"
+          class="px-2"
         >
           <label>
             To Date
@@ -117,7 +117,7 @@ exports[`renders logger system 1`] = `
           </div>
         </div>
         <div
-          class="col-md-1 pt-4"
+          class="px-2 pt-4"
         >
           <button
             class="searchAction btn btn-primary"
@@ -128,6 +128,9 @@ exports[`renders logger system 1`] = `
         </div>
       </div>
     </form>
+    <hr
+      class="my-4"
+    />
     <div
       class="card mt-2"
     >
