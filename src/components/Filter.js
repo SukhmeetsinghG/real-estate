@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function Filter(props) {
- const {params,setParams,applicationTypes,actionTypes,handleChange,handleSearch,NavigateTo} = props
+ const {params,setParams,applicationTypes,actionTypes,handleChange,NavigateTo} = props
   return (
     <form action="">
     <div className="d-flex">

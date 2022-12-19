@@ -13,6 +13,7 @@ const columns = [
     {
       name: "Application Type",
       selector: (row) => row.applicationType ?? "-",
+      cell: row => <div data-tag="allowRowEvents" data-order={row.applicationType ?? "-1"}>{row.applicationType ?? "-"}</div>,
       sortable: true,
     },
     {
@@ -125,11 +126,17 @@ export default function LogList() {
         let matchCount = 0;
         for (const [key, value] of Object.entries(arrFilters)) {
 
-          if (key !== "fromDate" && key !== "toDate") {
+          if (key !== "fromDate" && key !== "toDate" && key !== "applicationType" && key !== "actionType") {
             if (item[key]?.toString().indexOf(value) > -1) {
 
               matchCount++;
             }
+          }else if(key === "applicationType" || key === "actionType") {
+            if(item[key]?.toString() === value)
+            {
+              matchCount++;
+            }
+
           } else {
             //for dates keys filter
             let logDate = new Date(item["creationTimestamp"]).getTime();
@@ -209,7 +216,7 @@ export default function LogList() {
     return (
     <div className="py-5 paddingrl">
     <h1>Log List</h1>
-    <Filter params={params} setParams = {setParams} applicationTypes={applicationTypes} actionTypes={actionTypes} handleChange = {handleChange} handleSearch = {handleSearch} NavigateTo = {NavigateTo}/>
+    <Filter params={params} setParams = {setParams} applicationTypes={applicationTypes} actionTypes={actionTypes} handleChange = {handleChange} NavigateTo = {NavigateTo}/>
       <hr className="my-4"/>
       <div className="card mt-2">
         <DataTable
